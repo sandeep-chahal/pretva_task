@@ -2,6 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
+
+const productRoute = require("./routes/product");
+
 const app = express();
 
 const main = async () => {
@@ -15,6 +18,7 @@ const main = async () => {
 	});
 
 	// routes
+	app.use(productRoute);
 
 	// catching errors
 	app.use((err, req, res, next) => {
