@@ -6,6 +6,7 @@ import { getFilteredProducts } from "../../utility/fetch";
 import Filter from "../Filter";
 import SearchInput from "../SearchInput";
 import Product from "../Product";
+import AppliedFilters from "../AppliedFilters";
 
 const FilterProducts = () => {
 	const [loading, setLoading] = useState(false);
@@ -42,13 +43,18 @@ const FilterProducts = () => {
 				applyFilters={handleSearch}
 			/>
 			<SearchInput onClick={handleSearchQuery} />
+			<AppliedFilters
+				filter={filter}
+				setFilter={setFilter}
+				handleSearch={handleSearch}
+			/>
 			<main>
 				{loading && <div className="loading">Loading...</div>}
 				{!loading && error && <div className="error">{error.message}</div>}
 				{!loading && !error && products && (
 					<div className="products">
 						{products.map((product) => (
-							<Product product={product} key={product._id} />
+							<Product type="req" product={product} key={product._id} />
 						))}
 					</div>
 				)}

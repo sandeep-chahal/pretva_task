@@ -31,7 +31,7 @@ export const parseFilter = (filters) => {
 	return parsedFilter;
 };
 
-export const defaultFilter = {
+export const defaultFilter = () => ({
 	quantity: {
 		$lt: {
 			on: false,
@@ -88,4 +88,4 @@ export const defaultFilter = {
 			value: 10,
 		},
 	},
-};
+});
