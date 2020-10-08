@@ -8,6 +8,8 @@
 
 html {
 	font-size: 62.5%;
+	--color-primary: #edc988;
+	--color-secondary: #033138;
 }
 
 body {
@@ -17,4 +19,5 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	color: var(--color-secondary);
 }
