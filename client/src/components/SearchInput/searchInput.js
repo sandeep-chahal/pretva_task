@@ -6,9 +6,7 @@ const SearchInput = ({ onClick }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const search = input.current.trim();
-		if (!search) alert("Enter something to search");
-		else onClick(search);
-		console.log(search);
+		onClick(search);
 	};
 	return (
 		<form className="search-input" onSubmit={handleSubmit}>

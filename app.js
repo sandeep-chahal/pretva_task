@@ -10,6 +10,7 @@ const app = express();
 const main = async () => {
 	//middleware
 	app.use(express.static("./client/build"));
+	app.use(express.json());
 
 	// connect to db
 	await mongoose.connect(process.env.MONGODB_URI, {
