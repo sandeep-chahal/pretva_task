@@ -5,7 +5,7 @@ const SearchInput = ({ onClick }) => {
 	const input = useRef("");
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const search = input.current.trim();
+		const search = input.current.trim().toLowerCase();
 		onClick(search);
 	};
 	return (
