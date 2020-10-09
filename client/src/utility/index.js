@@ -31,6 +31,16 @@ export const parseFilter = (filters) => {
 	return parsedFilter;
 };
 
+export const isFilterOn = (filters) => {
+	for (let filter_name in filters) {
+		let filter = filters[filter_name];
+		if (filter.$lt.on || filter.$gt.on || filter.$eq.on) {
+			return true;
+		}
+	}
+	return false;
+};
+
 export const defaultFilter = () => ({
 	quantity: {
 		$lt: {

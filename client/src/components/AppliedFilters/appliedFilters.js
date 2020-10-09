@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import { defaultFilter } from "../../utility";
+import { defaultFilter, isFilterOn } from "../../utility";
 
 const AppliedFilters = ({
 	filter,
@@ -40,7 +40,9 @@ const AppliedFilters = ({
 					) : null
 				);
 			})}
-			<div onClick={clearAll}>Clear All</div>
+			{searchQuery.length || isFilterOn(filter) ? (
+				<div onClick={clearAll}>Clear All</div>
+			) : null}
 		</div>
 	);
 };

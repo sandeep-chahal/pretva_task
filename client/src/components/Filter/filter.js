@@ -1,5 +1,6 @@
+import { isValidObjectId } from "mongoose";
 import React, { useState, useRef } from "react";
-import { formatNumber } from "../../utility";
+import { isFilterOn } from "../../utility";
 import "./styles.scss";
 
 const f = [
@@ -14,6 +15,13 @@ const Filter = ({ applyFilters, filter, setFilter }) => {
 
 	const openDropDown = (name) => {
 		setOpen((last_opened) => (last_opened === name ? null : name));
+	};
+
+	const handleApplyFilter = () => {
+		if (isFilterOn(filter)) {
+			applyFilters();
+		}
+		setOpen(null);
 	};
 
 	return (
@@ -111,13 +119,7 @@ const Filter = ({ applyFilters, filter, setFilter }) => {
 						) : null}
 					</div>
 				))}
-				<div
-					className="apply-btn"
-					onClick={() => {
-						applyFilters();
-						setOpen(null);
-					}}
-				>
+				<div className="apply-btn" onClick={handleApplyFilter}>
 					Apply
 				</div>
 			</div>
