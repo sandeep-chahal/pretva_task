@@ -10,6 +10,10 @@ html {
 	font-size: 62.5%;
 	--color-primary: #edc988;
 	--color-secondary: #033138;
+
+	@media (max-width: 650px) {
+		font-size: 50%;
+	}
 }
 
 body {

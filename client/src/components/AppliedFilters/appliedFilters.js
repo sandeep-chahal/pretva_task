@@ -20,12 +20,12 @@ const AppliedFilters = ({
 		<div className="applied-filters">
 			<span>Applied Filters:</span>
 			{searchQuery.map((query, i) => (
-				<div onClick={() => handleRemoveQuery(i)} className={query + i}>
+				<div onClick={() => handleRemoveQuery(i)} key={query + i}>
 					{query}
 				</div>
 			))}
 			{Object.keys(filter).map((fk) => {
-				return Object.keys(filter[fk]).map((tk) =>
+				return Object.keys(filter[fk]).map((tk, i) =>
 					filter[fk][tk].on ? (
 						<div
 							onClick={() => {
@@ -33,6 +33,7 @@ const AppliedFilters = ({
 								newFilter[fk][tk].on = false;
 								handleFilterChange(newFilter);
 							}}
+							key={i}
 						>
 							{fk} {tk === "$lt" ? " < " : null} {tk === "$gt" ? " > " : null}
 							{tk === "$eq" ? " = " : null} {filter[fk][tk].value}

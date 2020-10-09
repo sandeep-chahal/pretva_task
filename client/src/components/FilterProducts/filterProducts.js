@@ -33,12 +33,12 @@ const FilterProducts = () => {
 		getFilteredProducts(value, parseFilter(afilter)).then((products) => {
 			if (products instanceof Error) {
 				setError(products);
-				setAppliedFilter(afilter);
 				setLoading(false);
 			} else {
 				setProducts(products);
 				setLoading(false);
 			}
+			setAppliedFilter({ ...afilter });
 		});
 	};
 

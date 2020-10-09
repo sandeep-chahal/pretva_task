@@ -5,23 +5,32 @@
 	border-radius: 1rem;
 	padding: 1rem 2rem;
 
+	@media (max-width: 700px) {
+		width: 90%;
+	}
+
 	.header {
 		font-size: 2rem;
 		font-weight: 600;
 	}
 
 	.items {
-		margin: 2rem 0;
+		margin: 2rem auto;
 		display: flex;
 		align-items: center;
 		justify-content: space-evenly;
+		flex-wrap: wrap;
+		@media (max-width: 900px) {
+			width: 70%;
+			margin: 1rem auto;
+		}
 	}
 
 	.item {
 		position: relative;
-
 		font-size: 1.6rem;
 		font-weight: 400;
+		margin: 1.5rem;
 		cursor: pointer;
 
 		.wrapper {
