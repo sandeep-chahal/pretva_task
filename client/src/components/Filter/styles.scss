@@ -19,12 +19,15 @@
 
 	.item {
 		position: relative;
-		display: flex;
-		align-items: center;
+
 		font-size: 1.6rem;
 		font-weight: 400;
 		cursor: pointer;
 
+		.wrapper {
+			display: flex;
+			align-items: center;
+		}
 		img {
 			width: 1rem;
 			margin-left: 1rem;

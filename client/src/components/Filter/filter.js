@@ -22,11 +22,10 @@ const Filter = ({ applyFilters, filter, setFilter }) => {
 			<div className="items">
 				{f.map((f) => (
 					<div className="item" key={f.slug}>
-						<div onClick={() => openDropDown(f.name)}>{f.name}</div>
-						<img
-							src={require("../../Assets/drop-down-arrow.svg")}
-							onClick={() => openDropDown(f.name)}
-						/>
+						<div className="wrapper" onClick={() => openDropDown(f.name)}>
+							<div>{f.name}</div>
+							<img src={require("../../Assets/drop-down-arrow.svg")} />
+						</div>
 						{open === f.name ? (
 							<div className="dropdown">
 								<div className="dropdown-item">
@@ -112,7 +111,13 @@ const Filter = ({ applyFilters, filter, setFilter }) => {
 						) : null}
 					</div>
 				))}
-				<div className="apply-btn" onClick={() => applyFilters()}>
+				<div
+					className="apply-btn"
+					onClick={() => {
+						applyFilters();
+						setOpen(null);
+					}}
+				>
 					Apply
 				</div>
 			</div>
