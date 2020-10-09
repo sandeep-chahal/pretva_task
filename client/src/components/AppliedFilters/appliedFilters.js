@@ -2,7 +2,14 @@ import React from "react";
 import "./styles.scss";
 import { defaultFilter } from "../../utility";
 
-const AppliedFilters = ({ filter, setFilter, handleSearch }) => {
+const AppliedFilters = ({
+	filter,
+	setFilter,
+	handleSearch,
+	searchQuery,
+	handleRemoveQuery,
+	clearAll,
+}) => {
 	const handleFilterChange = (newFilter) => {
 		if (newFilter) setFilter(newFilter);
 		else setFilter(defaultFilter());
@@ -12,6 +19,11 @@ const AppliedFilters = ({ filter, setFilter, handleSearch }) => {
 	return (
 		<div className="applied-filters">
 			<span>Applied Filters:</span>
+			{searchQuery.map((query, i) => (
+				<div onClick={() => handleRemoveQuery(i)} className={query + i}>
+					{query}
+				</div>
+			))}
 			{Object.keys(filter).map((fk) => {
 				return Object.keys(filter[fk]).map((tk) =>
 					filter[fk][tk].on ? (
@@ -28,7 +40,7 @@ const AppliedFilters = ({ filter, setFilter, handleSearch }) => {
 					) : null
 				);
 			})}
-			<div onClick={() => handleFilterChange()}>Clear All</div>
+			<div onClick={clearAll}>Clear All</div>
 		</div>
 	);
 };

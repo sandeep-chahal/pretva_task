@@ -13,26 +13,48 @@ const FilterProducts = () => {
 	const [error, setError] = useState(null);
 	const [products, setProducts] = useState(null);
 	const [filter, setFilter] = useState(defaultFilter);
-	const [searchQuery, setSearchQuery] = useState("");
+	const [appliedFilter, setAppliedFilter] = useState(defaultFilter);
+	const [searchQuery, setSearchQuery] = useState([]);
 
 	const handleSearchQuery = (value) => {
-		setSearchQuery(value);
-		handleSearch(value);
+		if (searchQuery.some((v) => v === value)) {
+			handleSearch();
+		} else if (value) {
+			const newSearchQuery = [...searchQuery, value];
+			setSearchQuery(newSearchQuery);
+			handleSearch(newSearchQuery);
+		}
 	};
 
-	const handleSearch = (value = searchQuery) => {
+	const handleSearch = (value = searchQuery, afilter = filter) => {
 		setError(null);
 		setLoading(true);
 		setProducts(null);
-		getFilteredProducts(value, parseFilter(filter)).then((products) => {
+		getFilteredProducts(value, parseFilter(afilter)).then((products) => {
 			if (products instanceof Error) {
 				setError(products);
+				setAppliedFilter(afilter);
 				setLoading(false);
 			} else {
 				setProducts(products);
 				setLoading(false);
 			}
 		});
+	};
+
+	const handleRemoveQuery = (i) => {
+		const newSearchQuery = searchQuery.filter((_, _i) => _i !== i);
+		setSearchQuery(newSearchQuery);
+		handleSearch(newSearchQuery);
+	};
+
+	const clearAll = () => {
+		setAppliedFilter(defaultFilter);
+		setFilter(defaultFilter);
+		setSearchQuery([]);
+		setError(null);
+		setLoading(false);
+		setProducts(null);
 	};
 
 	return (
@@ -44,9 +66,12 @@ const FilterProducts = () => {
 			/>
 			<SearchInput onClick={handleSearchQuery} />
 			<AppliedFilters
-				filter={filter}
+				filter={appliedFilter}
 				setFilter={setFilter}
 				handleSearch={handleSearch}
+				searchQuery={searchQuery}
+				handleRemoveQuery={handleRemoveQuery}
+				clearAll={clearAll}
 			/>
 			<main>
 				{loading && <div className="loading">Loading...</div>}

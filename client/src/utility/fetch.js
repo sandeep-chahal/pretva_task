@@ -16,13 +16,13 @@ export const getFilteredProducts = async (value, filter) => {
 		let filters = {
 			...filter,
 		};
-		if (value)
+		if (value.length)
 			filters["$or"] = [
 				{
-					product_name: value,
+					product_name: { $in: value },
 				},
 				{
-					buyer_name: value,
+					buyer_name: { $in: value },
 				},
 			];
 
